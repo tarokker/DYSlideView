@@ -200,10 +200,10 @@
     _initializating = NO;
 }
 
-- (void)buttonClicked:(UIButton *)button
+- (void)buttonClicked:(UIButton *)button withAnimation:(BOOL)animation
 {
     [self _updateSelectedButton:button];
-    [_scrollView setContentOffset:CGPointMake(self.bounds.size.width * button.tag, 0) animated:YES];
+    [_scrollView setContentOffset:CGPointMake(self.bounds.size.width * button.tag, 0) animated:animation];
 }
 
 - (void)_updateSelectedButton:(UIButton *)button
@@ -222,7 +222,7 @@
     }
 }
 
-- (void)selectButtonWithIndex:(NSInteger)newIndex
+- (void)selectButtonWithIndex:(NSInteger)newIndex withAnimation:(BOOL)animation
 {
     if ( _initializating ) {
         _indexForDefaultItem = [NSNumber numberWithInteger:newIndex];
@@ -230,7 +230,7 @@
     else {
         for ( UIButton *mButton in _slideBarButtons ) {
             if ( mButton.tag == newIndex ) {
-                [self buttonClicked:mButton];
+                [self buttonClicked:mButton withAnimation:animation];
 //                _selectedButton = mButton;
 //                [self setNeedsLayout];
 //                [self layoutIfNeeded];

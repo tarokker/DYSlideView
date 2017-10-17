@@ -92,6 +92,6 @@
 
 - (void)didClickButtonGo2:(id)sender
 {
-    [slideView selectButtonWithIndex:1];
+    [slideView selectButtonWithIndex:1 withAnimation:YES];
 }
 @end
