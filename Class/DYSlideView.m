@@ -209,7 +209,7 @@
 - (void)buttonClicked:(UIButton *)button
 {
     [self _updateSelectedButton:button];
-    [_scrollView setContentOffset:CGPointMake(self.bounds.size.width * button.tag, 0) animated:animation];
+    [_scrollView setContentOffset:CGPointMake(self.bounds.size.width * button.tag, 0) animated:YES];
 }
 
 - (void)_updateSelectedButton:(UIButton *)button
