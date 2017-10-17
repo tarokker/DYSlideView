@@ -206,6 +206,12 @@
     [_scrollView setContentOffset:CGPointMake(self.bounds.size.width * button.tag, 0) animated:animation];
 }
 
+- (void)buttonClicked:(UIButton *)button
+{
+    [self _updateSelectedButton:button];
+    [_scrollView setContentOffset:CGPointMake(self.bounds.size.width * button.tag, 0) animated:animation];
+}
+
 - (void)_updateSelectedButton:(UIButton *)button
 {
     if (button == nil && [_slideBarButtons count] > 0)
