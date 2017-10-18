@@ -197,6 +197,7 @@
         [self _updateSelectedButton:_selectedButton];
         [_scrollView setContentOffset:CGPointMake(self.bounds.size.width * _selectedButton.tag, 0) animated:NO];
     }
+    [self scrollViewDidScroll:_scrollView];
     _initializating = NO;
 }
 
