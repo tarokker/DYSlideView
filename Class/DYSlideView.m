@@ -133,14 +133,7 @@
     [_separator setFrame:CGRectMake(0, _slideBarHeight - _sliderHeight + 1, _slideBar.bounds.size.width, 1.0)];
     
     CGFloat buttonWidth = self.bounds.size.width / _numberOfViewControllers;
-    CGFloat sliderWidth = 0;
-    
-    if (_slideViewSliderWithoutMargin) {
-        sliderWidth = [self getButtonTextSize].width;
-    }
-    else {
-        sliderWidth = buttonWidth * _sliderScale;
-    }
+    CGFloat sliderWidth = buttonWidth * _sliderScale;
     
     if ( _initializating )
     {
