@@ -81,6 +81,7 @@
     _sliderHeight = 4.f;
     _scrollViewBounces = YES;
     _scrollEnabled = YES;
+    _slideViewSliderWithoutMargin = NO;
 }
 
 - (void)layoutSubviews
@@ -132,7 +133,14 @@
     [_separator setFrame:CGRectMake(0, _slideBarHeight - _sliderHeight + 1, _slideBar.bounds.size.width, 1.0)];
     
     CGFloat buttonWidth = self.bounds.size.width / _numberOfViewControllers;
-    CGFloat sliderWidth = buttonWidth * _sliderScale;
+    CGFloat sliderWidth = 0;
+    
+    if (_slideViewSliderWithoutMargin) {
+        sliderWidth = [self getButtonTextSize].width;
+    }
+    else {
+        sliderWidth = buttonWidth * _sliderScale;
+    }
     
     if ( _initializating )
     {
@@ -254,7 +262,16 @@
     CGPoint contentOffset = scrollView.contentOffset;
     
     CGFloat buttonWidth = self.bounds.size.width / _numberOfViewControllers;
-    CGFloat sliderWidth = buttonWidth * _sliderScale;
+
+    CGFloat sliderWidth = 0;
+
+    if (_slideViewSliderWithoutMargin) {
+        sliderWidth = [self getButtonTextSize].width;
+    }
+    else {
+        sliderWidth = buttonWidth * _sliderScale;
+    }
+    
     CGRect rect = _slider.frame;
     rect.origin.x = (contentOffset.x/self.bounds.size.width) * buttonWidth + (buttonWidth - sliderWidth)/2;
     [_slider setFrame:CGRectMake(rect.origin.x, _slideBarHeight-_sliderHeight-1, sliderWidth, _sliderHeight)];
@@ -280,6 +297,22 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     [self _updateSelectedButton:[_slideBarButtons objectAtIndex:_currentSelectedIndex]];
+}
+
+// MARK: - Private methodes
+
+- (CGSize)getButtonTextSize
+{
+    // 1) Get button font
+    UIFont *font = _selectedButton.titleLabel.font;
+    
+    // 2) Get button text
+    NSString *str = _selectedButton.titleLabel.text;
+    
+    // 3) Calculate the text size
+    CGSize stringSize = [str sizeWithAttributes:@{NSFontAttributeName:font}];
+    
+    return stringSize;
 }
 
 @end

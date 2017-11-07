@@ -17,6 +17,7 @@
 - (UIViewController *)DY_viewControllerAtIndex:(NSInteger)index;
 
 @optional
+
 - (void)DY_didSelectButtonAtIndex:(NSInteger)index;
 
 @end
@@ -31,6 +32,7 @@
 
 @property (strong, nonatomic) UIColor *slideBarColor;
 @property (nonatomic) CGFloat slideBarHeight;
+@property (nonatomic) BOOL slideViewSliderWithoutMargin;
 
 @property (strong, nonatomic) UIColor *sliderColor;
 @property (nonatomic) CGFloat sliderHeight;
